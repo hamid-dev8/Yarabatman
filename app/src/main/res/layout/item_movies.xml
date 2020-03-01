@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+<variable
+    name="movies"
+    type="com.dimache.yarabatman.data.model.Movies" />
+    </data>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/card_container"
+    android:padding="12dp"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="18dp"
+    android:elevation="2dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rel_container">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{movies.title}"
+            android:textSize="16sp"
+            android:textColor="@color/graphit"
+            android:textStyle="bold"
+            android:padding="8dp"/>
+
+        <com.dimache.yarabatman.customview.AspectRatioImageView
+            android:id="@+id/cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cover="@{movies.poster}"
+            android:layout_below="@+id/txt_title"
+            app:aspectRatioEnabled="true"
+            app:aspectRatio="1.8"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cover"
+            android:textSize="14sp"
+            android:textColor="@color/graphit"
+            android:text="@{movies.year}"
+            android:padding="8dp"/>
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
+
+</layout>
