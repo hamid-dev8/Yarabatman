@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dimache.yarabatman.BR
 import com.dimache.yarabatman.data.model.Movies
 import com.dimache.yarabatman.databinding.ItemMoviesBinding
+import kotlinx.android.synthetic.main.item_movies.view.*
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
@@ -38,7 +39,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
             binding.setVariable(BR.movies,item)
             binding.executePendingBindings()
 
-            itemView.setOnClickListener {
+            itemView.txt_detail.setOnClickListener {
                 onItemClick(item,itemView)
             }
         }

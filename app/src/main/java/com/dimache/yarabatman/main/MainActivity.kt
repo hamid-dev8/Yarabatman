@@ -14,7 +14,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        addFragment(MainFragment.newInstance(),"main",false)
+        addFragment(MainFragment.newInstance(),"main",true)
     }
 
 }

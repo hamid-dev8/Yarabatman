@@ -1,5 +1,6 @@
 package com.dimache.yarabatman.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dimache.yarabatman.App
 import com.dimache.yarabatman.R
 import com.dimache.yarabatman.base.BaseFragment
+import com.dimache.yarabatman.detail.DetailActivity
 import com.dimache.yarabatman.utils.Status
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -60,6 +62,13 @@ class MainFragment : BaseFragment()
                     if (movieAdapter == null)
                     {
                         movieAdapter = MainAdapter().apply {
+                            onItemClick = { movies, view ->
+
+                                val intent = Intent(activity, DetailActivity::class.java).apply {
+                                    putExtra("id", movies.imdbID)
+                                }
+                                startActivity(intent)
+                            }
 
                         }
 

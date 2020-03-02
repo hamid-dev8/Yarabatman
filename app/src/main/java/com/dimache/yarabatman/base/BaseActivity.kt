@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import com.dimache.yarabatman.R
 import kotlinx.android.synthetic.*
 
+
 abstract class BaseActivity: AppCompatActivity()
 {
-    var active: Fragment? = null
 
     abstract fun getContainer() : Int
 

@@ -43,11 +43,31 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cover"
             android:textSize="14sp"
             android:textColor="@color/graphit"
+            android:layout_alignTop="@+id/txt_detail"
+            android:layout_alignBottom="@id/txt_detail"
             android:text="@{movies.year}"
-            android:padding="8dp"/>
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cover"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="See Detail"
+            android:layout_alignParentRight="true"
+            android:padding="8dp"
+            android:textColor="#fff"
+            android:background="@drawable/bg_txt"
+            android:layout_margin="12dp"
+            />
 
     </RelativeLayout>
 

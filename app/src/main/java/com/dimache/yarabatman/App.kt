@@ -4,8 +4,11 @@ import android.app.Application
 import android.content.Context
 import com.bumptech.glide.request.target.ViewTarget
 import com.dimache.yarabatman.data.CategoryDataSource
+import com.dimache.yarabatman.data.DetailDataSource
 import com.dimache.yarabatman.data.remote.util.RetrofitBuilder
 import com.dimache.yarabatman.data.source.CategoryRepository
+import com.dimache.yarabatman.data.source.DetailRepository
+import com.dimache.yarabatman.detail.DetailViewModel
 import com.dimache.yarabatman.main.CategoryViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -29,10 +32,12 @@ class App: Application()
 
     private val repoModule = module {
         single<CategoryDataSource> { CategoryRepository() }
+        single<DetailDataSource> { DetailRepository() }
     }
 
     private val viewModelModule = module {
         viewModel { CategoryViewModel(get()) }
+        viewModel { DetailViewModel(get()) }
     }
 
     override fun onCreate() {

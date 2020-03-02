@@ -16,7 +16,8 @@ interface WebApi {
     @GET("?apikey=3e974fca&s=batman")
     fun getCategories() :Observable<RemoteModel<List<Movies>,Any>>
 
-
+    @GET("?apikey=3e974fca&")
+    fun getDetail(@Query("i") id : String) : Observable<MovieDetail>
 
 
 }

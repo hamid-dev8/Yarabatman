@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+        <variable
+            name="detail"
+            type="com.dimache.yarabatman.detail.DetailViewModel" />
+    </data>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentInsetStart="0dp"
+            android:contentInsetLeft="0dp"
+            android:visibility="visible"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                app:srcCompat="@drawable/ic_arrow"
+                />
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:textColor="@color/graphit"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:text="@{detail.detailField.title}"
+        android:layout_below="@+id/appbar"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit ="marquee_forever"
+        android:scrollHorizontally="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_alignRight="@+id/simpleview"
+        android:layout_alignLeft="@+id/cover"
+        />
+
+    <View
+        android:id="@+id/simpleview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/txt_imdb"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_imdb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        app:srcCompat="@drawable/ic_imdb"
+        android:layout_margin="8dp"
+        android:layout_alignTop="@+id/txt_imdb"
+        android:layout_alignBottom="@id/txt_imdb"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_imdb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="@color/graphit"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:text="@{detail.detailField.imdbRating}"
+        android:layout_toLeftOf="@+id/img_imdb"
+        android:layout_alignTop="@id/txt_title"
+        android:layout_alignBottom="@id/txt_title"
+        android:gravity="center_vertical"
+        />
+
+
+    <com.dimache.yarabatman.customview.AspectRatioImageView
+        android:id="@+id/cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cover="@{detail.detailField.poster}"
+        android:layout_below="@+id/txt_title"
+        app:aspectRatioEnabled="true"
+        app:aspectRatio="1.1"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_meta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/graphit"
+        android:textStyle="normal"
+        android:padding="8dp"
+        android:text='@{"MetaScore : "+detail.detailField.metascore}'
+        android:gravity="center_vertical"
+        android:layout_below="@id/cover"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_boxoffice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/graphit"
+        android:textStyle="normal"
+        android:padding="8dp"
+        android:text='@{"BoxOffice : "+detail.detailField.boxOffice}'
+        android:gravity="center_vertical"
+        android:layout_below="@id/txt_meta"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/graphit"
+        android:textStyle="normal"
+        android:padding="8dp"
+        android:text='@{"Genre : "+detail.detailField.genre}'
+        android:gravity="center_vertical"
+        android:layout_below="@id/txt_boxoffice"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_director"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/graphit"
+        android:textStyle="normal"
+        android:padding="8dp"
+        android:text='@{"Director : "+detail.detailField.director}'
+        android:gravity="center_vertical"
+        android:layout_below="@id/txt_genre"
+        />
+
+
+</RelativeLayout>
+
+</layout>
