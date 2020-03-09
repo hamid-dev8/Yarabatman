@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type = "java.util.List"/>
+        <variable
+            name="cat"
+            type="com.dimache.yarabatman.data.model.CategoryModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_container"
+        android:padding="12dp"
+        app:cardCornerRadius="8dp"
+        android:layout_margin="18dp"
+        android:elevation="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rel_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{cat.title}"
+                android:textSize="16sp"
+                android:textColor="@color/graphit"
+                android:textStyle="bold"
+                android:padding="8dp"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtyear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/graphit"
+                android:layout_alignTop="@+id/txt_detail"
+                android:layout_alignBottom="@id/txt_detail"
+                android:text="@{cat.year}"
+                android:gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_below="@+id/txt_title"
+                android:layout_marginTop="12dp"
+                />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="Your Offline"
+                android:layout_alignParentRight="true"
+                android:padding="8dp"
+                android:textColor="#fff"
+                android:background="@drawable/bg_txt"
+                android:layout_margin="12dp"
+                />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

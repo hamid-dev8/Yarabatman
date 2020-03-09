@@ -15,11 +15,18 @@ import com.dimache.yarabatman.detail.DetailActivity
 import com.dimache.yarabatman.utils.Status
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import android.net.NetworkInfo
+import android.net.ConnectivityManager
+import android.content.Context
+import com.dimache.yarabatman.data.model.CategoryModel
+import com.dimache.yarabatman.data.model.Movies
 
-class MainFragment : BaseFragment()
+class MainFragment : BaseFragment() , CategoryViewModel.OnCategoryCallBack
 {
+
     val viewModel: CategoryViewModel by viewModel()
     var movieAdapter : MainAdapter? = null
+    var offlineAdapter : MainOfflineAdapter? = null
 
 
     companion object{
@@ -76,14 +83,46 @@ class MainFragment : BaseFragment()
                     }
 
                     movieAdapter?.list = it.data!!
+                    if (viewModel.isCategoryEmpty().isEmpty()) {
+                        it.data.forEachIndexed { index, movies ->
+                            viewModel.saveCategory(it.data, index)
+                        }
+                    }
                     recycler.startAnimation(AnimationUtils.loadAnimation(App.appContext,R.anim.open_recycler))
 
                 }
             }
         })
 
+        viewModel.offlineLiveData.observe(this, Observer {
+            progress.dismiss()
+            recycler.visibility = View.VISIBLE
+            recycler.adapter = offlineAdapter
+            offlineAdapter?.list = it
+            recycler.startAnimation(AnimationUtils.loadAnimation(App.appContext,R.anim.open_recycler))
+        })
 
-        viewModel.fetch()
+        viewModel.setCategoryViewModel(this)
+
+        if (!isNetworkAvailable(App.appContext!!))
+        {
+            offlineAdapter = MainOfflineAdapter()
+            viewModel.getCategory()
+        }
+        else{
+            viewModel.fetch()
+        }
     }
 
+    override fun onComplete(params: List<CategoryModel>) {
+
+    }
+
+
+    fun isNetworkAvailable(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        var activeNetworkInfo: NetworkInfo? = null
+        activeNetworkInfo = cm.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
+    }
 }
